@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="//unpkg.com/@finos/perspective/build/perspective.js"></script>
+    <script src="//unpkg.com/@finos/perspective-viewer/build/perspective.view.js"></script>
+    <script src="//unpkg.com/@finos/perspective-viewer-hypergrid/build/hypergrid.plugin.js"></script>
+    <script src="//unpkg.com/@finos/perspective-viewer-d3fc/build/d3fc.plugin.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="//unpkg.com/@finos/perspective-viewer/build/material.css"
+      is="custom-style"
+    />
+
+    <style>
+      perspective-viewer {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <perspective-viewer
+      id="perspective-viewer"
+      view="d3_y_bar"
+      row-pivots='["name"]'
+      column-pivots='["client"]'
+      columns='["chg","vol"]'
+    ></perspective-viewer>
+
+    <script>
+      const schema = {
+        ask: "float",
+        bid: "float",
+        chg: "float",
+        client: "string",
+        name: "string",
+        vol: "float"
+      };
+      const psp = document.getElementById("perspective-viewer");
+
+      const table = perspective.worker().table(schema, { limit: 500 });
+      psp.load(table);
+
+      let initialised = false;
+      const socket = new WebSocket(
+        `ws://localhost:${location.port}/helixstream`
+      );
+      socket.onmessage = res => {
+        psp.update(JSON.parse(res.data));
+      };
+    </script>
+  </body>
+</html>

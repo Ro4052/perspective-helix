@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "0.1",
+  "fields": [
+    {"name": "name"},
+    {"name": "client"},
+    {"name": "chg"},
+    {"name": "bid"},
+    {"name": "ask"},
+    {"name": "vol"}
+  ],
+  "rules": [
+    {
+      "rule": "name",
+      "constraints": [
+        { "field": "name", "is": "ofType", "value": "string" },
+        { "not": { "field": "name", "is": "null" } },
+        { "field": "name", "is": "inSet", "values": ["AAPL.N", "AMZN.N", "QQQ.N", "NVDA.N", "TSLA.N", "FB.N", "MSFT.N", "TLT.N", "XIV.N", "YY.N", "CSCO.N", "GOOGL.N", "PCLN.N"]}
+      ]
+    },
+    {
+      "rule": "client",
+      "constraints": [
+        { "field": "client", "is": "ofType", "value": "string" },
+        { "not": { "field": "client", "is": "null" } },
+        { "field": "client", "is": "inSet", "values": ["Homer", "Marge", "Bart", "Lisa", "Maggie", "Moe", "Lenny", "Carl", "Krusty"]}
+      ]
+    },
+    {
+      "rule": "chg",
+      "constraints": [
+        { "field": "chg", "is": "ofType", "value": "decimal" },
+        { "not": { "field": "chg", "is": "null" } },
+        { "field": "chg", "is": "greaterThanOrEqualTo", "value": -10},
+        { "field": "chg", "is": "lessThanOrEqualTo", "value": 20},
+        { "field": "chg", "is": "granularTo", "value": 0.01}
+      ]
+    },
+    {
+      "rule": "bid",
+      "constraints": [
+        { "field": "bid", "is": "ofType", "value": "decimal" },
+        { "not": { "field": "bid", "is": "null" } },
+        { "field": "bid", "is": "greaterThanOrEqualTo", "value": 90},
+        { "field": "bid", "is": "lessThanOrEqualTo", "value": 100},
+        { "field": "bid", "is": "granularTo", "value": 0.01}
+      ]
+    },
+    {
+      "rule": "ask",
+      "constraints": [
+        { "field": "ask", "is": "ofType", "value": "decimal" },
+        { "not": { "field": "ask", "is": "null" } },
+        { "field": "ask", "is": "greaterThanOrEqualTo", "value": 100},
+        { "field": "ask", "is": "lessThanOrEqualTo", "value": 110},
+        { "field": "ask", "is": "granularTo", "value": 0.01}
+      ]
+    },
+    {
+      "rule": "vol",
+      "constraints": [
+        { "field": "vol", "is": "ofType", "value": "decimal" },
+        { "not": { "field": "vol", "is": "null" } },
+        { "field": "vol", "is": "greaterThanOrEqualTo", "value": 100},
+        { "field": "vol", "is": "lessThanOrEqualTo", "value": 110},
+        { "field": "vol", "is": "granularTo", "value": 0.01}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "perspectivehelix",
+  "version": "1.0.0",
+  "description": "Integration of DataHelix and Perspective.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-ws": "^4.0.0",
+    "websocket": "^1.0.28"
+  }
+}
